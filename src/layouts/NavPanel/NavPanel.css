@@ -1,0 +1,9 @@
+.panel {
+  min-width: 400px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}

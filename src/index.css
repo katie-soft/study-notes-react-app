@@ -1,0 +1,16 @@
+body {
+  background-color: #181818;
+  margin: 0;
+}
+
+* {
+  font-family: 'Source Code Pro', monospace;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+
+p, h1, h2, ul {
+  margin: 0;
+  padding: 0;
+}
