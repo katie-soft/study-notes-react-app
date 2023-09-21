@@ -1,11 +1,13 @@
 import './NewItemButton.css';
+import CardButton from '../CardButton/CardButton';
 
 function NewItemButton() {
 
 	return (
-		<>
-			<button className='new-item'>+ Новая запись</button>
-		</>
+		<CardButton className='new-item-button'>
+			<img src="/plus.svg" alt="+" />
+			<span>Новая запись</span>
+		</CardButton>
 	);
 }
 

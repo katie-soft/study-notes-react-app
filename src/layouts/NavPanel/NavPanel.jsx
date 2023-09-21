@@ -1,17 +1,9 @@
 import './NavPanel.css';
-import Header from '../../components/Header/Header';
-import NewItemButton from '../../components/NewItemButton/NewItemButton';
-import JournalList from '../../components/JournalList/JournalList';
 
-
-function NavPanel() {
+function NavPanel({children}) {
 
 	return (
-		<div className='panel'>
-			<Header />
-			<NewItemButton />
-			<JournalList />
-		</div>
+		<div className='panel'>{children}</div>
 	);
 }
 

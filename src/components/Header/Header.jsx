@@ -4,8 +4,7 @@ function Header() {
 
 	return (
 		<>
-			<span>Header</span>
-		</>
+			<img src="/Logo.svg" alt="Study Notes" />		</>
 	);
 }
 
