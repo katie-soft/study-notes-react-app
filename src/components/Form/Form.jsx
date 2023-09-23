@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import cn from 'classnames';
 import Button from '../Button/Button';
-import './Form.css';
+import styles from './Form.module.css';
 
 function Form({ formSubmit }) {
 
@@ -41,10 +42,24 @@ function Form({ formSubmit }) {
 	};
 
 	return (
-		<form className='form' onSubmit={handleForm}> 
-			<input name="title" type="text" className={`${!formValidState.title ? 'input_invalid' : ''}`} />
-			<textarea name="text" id="" cols="30" rows="10"></textarea>
-			<input name="date" type="date" />
+		<form className={styles.form} onSubmit={handleForm}> 
+			<input 
+				name="title" 
+				type="text" 
+				className={cn(styles['input'], {
+					[styles['input_invalid']]: !formValidState.title
+				})} />
+			<textarea 
+				name="text"
+				className={cn(styles['input'], {
+					[styles['input_invalid']]: !formValidState.text
+				})} ></textarea>
+			<input 
+				name="date" 
+				type="date" 
+				className={cn(styles['input'], {
+					[styles['input_invalid']]: !formValidState.date
+				})}/>
 			<Button text="Сохранить"></Button> 
 		</form>
 	);

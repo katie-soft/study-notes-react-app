@@ -1,10 +1,13 @@
-import './Button.css';
+import styles from './Button.module.css';
 
 function Button({ text }) {
 
 	return (
 		<>
-			<button className='button button_color_accent'>{text}</button>
+			<button 
+				className={styles.button}>
+				{text}
+			</button>
 		</>
 	);
 }

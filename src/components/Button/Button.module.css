@@ -6,12 +6,9 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.25s;
+  background-color: #312EB5;
 }
 
-.button_color_accent {
-  background: #312EB5;
-}
-
-.button_color_accent:hover {
+.button:hover {
   background-color: #5059fe;
 }

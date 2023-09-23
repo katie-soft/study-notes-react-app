@@ -1,7 +1,7 @@
 import CardButton from '../CardButton/CardButton';
 import JournalItem from '../JournalItem/JournalItem';
 import { sortArrayByDate } from '../../utils/sort';
-import './JournalList.css';
+import styles from './JournalList.module.css';
 
 function JournalList( {listItems} ) {
 
@@ -10,7 +10,7 @@ function JournalList( {listItems} ) {
 		
 	} else {
 		return (
-			<ul className='journal-list'>
+			<ul className={styles['journal-list']}>
 				{listItems.sort(sortArrayByDate).map((item) => (
 					<li key={item.id}>
 						<CardButton>

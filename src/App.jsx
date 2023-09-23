@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import Body from './layouts/Body/Body';
 import NavPanel from './layouts/NavPanel/NavPanel';
 import Header from './components/Header/Header';
@@ -22,7 +22,7 @@ function App() {
 	};
 
 	return (
-		<div className='app'>
+		<div className={styles.app}>
 			<NavPanel>
 				<Header />
 				<NewItemButton />

@@ -2,11 +2,14 @@ import './CardButton.css';
 
 function CardButton({children, className}) {
 
-	const classNames = 'card-button' + (className ? ' ' + className : '');
+	const classNames = 'card-button' + (className ? ' '+ className : '');
 
 	return (
 		<> 
-			<button className={classNames}>{children}</button> 
+			<button 
+				className={classNames}>
+				{children}
+			</button> 
 		</>
 	);
 }
