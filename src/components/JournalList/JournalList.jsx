@@ -1,58 +1,30 @@
-import './JournalList.css';
-import JournalItem from '../JournalItem/JournalItem';
 import CardButton from '../CardButton/CardButton';
+import JournalItem from '../JournalItem/JournalItem';
+import { sortArrayByDate } from '../../utils/sort';
+import './JournalList.css';
 
-function JournalList() {
+function JournalList( {listItems} ) {
 
-	const data = [
-		{
-			title: 'Заголовок 1',
-			date: new Date(),
-			text: 'Текст 1'
-		},
-		{
-			title: 'Заголовок 2',
-			date: new Date(),
-			text: 'Текст 2'
-		},
-		{
-			title: 'Заголовок 3',
-			date: new Date(),
-			text: 'Текст 3'
-		}
-	];
-
-	return (
-		<ul className='journal-list'>
-			<li>
-				<CardButton>
-					<JournalItem 
-						title={data[0].title}
-						date={data[0].date}
-						text={data[0].text}
-					/>
-				</CardButton>
-			</li>
-			<li>
-				<CardButton>
-					<JournalItem 
-						title={data[1].title}
-						date={data[1].date}
-						text={data[1].text}
-					/>
-				</CardButton>
-			</li>
-			<li>
-				<CardButton>
-					<JournalItem 
-						title={data[2].title}
-						date={data[2].date}
-						text={data[2].text}
-					/>
-				</CardButton>
-			</li>
-		</ul>
-	);
+	if (listItems.length === 0) {
+		return <span>Записей пока нет. Добавьте первую</span>;
+		
+	} else {
+		return (
+			<ul className='journal-list'>
+				{listItems.sort(sortArrayByDate).map((item) => (
+					<li key={item.id}>
+						<CardButton>
+							<JournalItem 
+								title={item.title}
+								date={item.date}
+								text={item.text}
+							/>
+						</CardButton>
+					</li>
+				))}
+			</ul>
+		);
+	}
 }
 
 export default JournalList;

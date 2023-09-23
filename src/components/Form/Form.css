@@ -1,0 +1,17 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.form input,
+.form textarea {
+    color: black;
+}
+
+.input_invalid {
+  border: 1px pink solid;
+  background-color: darksalmon;
+}

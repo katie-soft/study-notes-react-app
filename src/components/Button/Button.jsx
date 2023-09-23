@@ -1,10 +1,10 @@
 import './Button.css';
 
-function Button() {
+function Button({ text }) {
 
 	return (
 		<>
-			<button className='button button_color_accent'>Кнопка</button>
+			<button className='button button_color_accent'>{text}</button>
 		</>
 	);
 }

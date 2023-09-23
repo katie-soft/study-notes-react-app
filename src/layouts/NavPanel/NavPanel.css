@@ -1,5 +1,6 @@
 .panel {
   min-width: 400px;
+  max-width: 40%;
   padding: 30px 20px;
   display: flex;
   flex-direction: column;
@@ -11,5 +12,6 @@
 @media (max-width: 920px) {
   .panel {
     min-width: 200px;
+    max-width: 100%;
   }
 }
