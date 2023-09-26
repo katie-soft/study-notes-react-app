@@ -6,7 +6,7 @@ function NewItemButton() {
 	return (
 		<CardButton className='new-item-button'>
 			<img src="/plus.svg" alt="+" />
-			<span>Новая запись</span>
+			<span>Add a note</span>
 		</CardButton>
 	);
 }

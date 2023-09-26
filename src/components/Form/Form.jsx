@@ -7,28 +7,34 @@ function Form({ formSubmit }) {
 
 	const [formValidState, setFormValidState] = useState({
 		title: true,
-		text: true,
-		date: true
+		date: true,
+		text: true
 	});
 
 	const validateForm = (formData) => {
 		let isFormValid = true;
+
 		setFormValidState(state => ({...state,
 			title: true,
-			text: true,
-			date: true}));
+			date: true,
+			text: true
+		}));
+
 		if (!formData.title.trim().length) {
 			setFormValidState(state => ({...state, title: false}));
 			isFormValid = false;
 		}
+
 		if (!formData.text.trim().length) {
 			setFormValidState(state => ({...state, text: false}));
 			isFormValid = false;
 		}
+
 		if (!formData.date) {
 			setFormValidState(state => ({...state, date: false}));
 			isFormValid = false;
 		}
+
 		return isFormValid;
 	};
 
@@ -36,6 +42,7 @@ function Form({ formSubmit }) {
 		event.preventDefault();
 		const formData = new FormData(event.target);
 		const formProps = Object.fromEntries(formData);
+		
 		if (validateForm(formProps)) {
 			formSubmit(formProps);
 		}
@@ -43,23 +50,44 @@ function Form({ formSubmit }) {
 
 	return (
 		<form className={styles.form} onSubmit={handleForm}> 
-			<input 
-				name="title" 
-				type="text" 
-				className={cn(styles['input'], {
-					[styles['input_invalid']]: !formValidState.title
-				})} />
+			<div className={styles['form-row']}>
+				<input 
+					name="title" 
+					type="text"
+					className={cn(styles['input'], styles['input-title'], {
+						[styles['input_invalid']]: !formValidState.title
+					})} />
+			</div>
+			<div className={styles['form-row']}>
+				<label className={styles['label-wrapper']} htmlFor="date">
+					<img src="/calendar.svg" alt="Calendar" />
+					<span className={styles.label}>Date</span>
+				</label>
+				<input 
+					name="date" 
+					type="date" 
+					id="date"
+					className={cn(styles['input'], {
+						[styles['input_invalid']]: !formValidState.date
+					})}/>
+			</div>
+			<div className={styles['form-row']}>
+				<label className={styles['label-wrapper']} htmlFor="tags">
+					<img src="/folder.svg" alt="Folder" />
+					<span className={styles.label}>Tags</span>
+				</label>
+				<input 
+					name="tags" 
+					type="text" 
+					id="tags"
+					className={cn(styles['input'])}/>
+			</div>
 			<textarea 
 				name="text"
-				className={cn(styles['input'], {
+				className={cn(styles['input'], styles['input-text'], styles['input-textarea'], {
 					[styles['input_invalid']]: !formValidState.text
 				})} ></textarea>
-			<input 
-				name="date" 
-				type="date" 
-				className={cn(styles['input'], {
-					[styles['input_invalid']]: !formValidState.date
-				})}/>
+
 			<Button text="Сохранить"></Button> 
 		</form>
 	);

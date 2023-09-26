@@ -1,4 +1,5 @@
 .form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -7,10 +8,52 @@
 }
 
 .input {
-    color: black;
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #FFFFFF10;
+  border-radius: 3px;
+}
+
+.input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+.input:focus {
+  outline: none;
+  background-color: #FFFFFF08;
+  border-color: transparent;
+}
+
+.input-title {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.input-textarea {
+  min-height: 300px;
+  border: 1px solid #FFFFFF10;
+  resize: none;
 }
 
 .input_invalid {
-  border: 1px pink solid;
-  background-color: darksalmon;
+  border: 1px #521521 solid;
+}
+
+.form-row {
+  display: flex;
+  width: 100%;
+}
+
+.label-wrapper {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  min-width: 150px;
+}
+
+.label {
+  color: rgba(255, 255, 255, 0.60);
+  font-size: 14px;
+  font-weight: 600;
 }
