@@ -3,22 +3,20 @@ import cn from 'classnames';
 import Button from '../Button/Button';
 import styles from './Form.module.css';
 
+const INITIAL_STATE = {
+	title: true,
+	date: true,
+	text: true
+};
+
 function Form({ formSubmit }) {
 
-	const [formValidState, setFormValidState] = useState({
-		title: true,
-		date: true,
-		text: true
-	});
+	const [formValidState, setFormValidState] = useState(INITIAL_STATE);
 
 	const validateForm = (formData) => {
 		let isFormValid = true;
 
-		setFormValidState(state => ({...state,
-			title: true,
-			date: true,
-			text: true
-		}));
+		setFormValidState(() => (INITIAL_STATE));
 
 		if (!formData.title.trim().length) {
 			setFormValidState(state => ({...state, title: false}));

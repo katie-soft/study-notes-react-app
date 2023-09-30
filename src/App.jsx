@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './App.module.css';
 import Body from './layouts/Body/Body';
 import NavPanel from './layouts/NavPanel/NavPanel';
@@ -10,7 +10,17 @@ import { INITIAL_DATA } from './utils/constants';
 
 function App() {
 
-	const [items, setItems] = useState(INITIAL_DATA);
+	const [items, setItems] = useState([]);
+
+	useEffect(() => {
+		setItems(INITIAL_DATA);
+	}, []);
+
+	useEffect(() => {
+		if (items.length) {
+			localStorage.setItem('data', JSON.stringify(items));
+		}
+	}, [items]);
 
 	const addItem = newItem => {
 		setItems(items => [...items, {
