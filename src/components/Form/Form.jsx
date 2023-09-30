@@ -1,49 +1,44 @@
-import { useState } from 'react';
+import { useEffect, useReducer } from 'react';
+import { formReducer, INITIAL_STATE } from './Form.state';
 import cn from 'classnames';
 import Button from '../Button/Button';
 import styles from './Form.module.css';
 
-const INITIAL_STATE = {
-	title: true,
-	date: true,
-	text: true
-};
-
 function Form({ formSubmit }) {
 
-	const [formValidState, setFormValidState] = useState(INITIAL_STATE);
+	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
+	const {isValid, values, isReadyToSubmit} = formState;
 
-	const validateForm = (formData) => {
-		let isFormValid = true;
+	useEffect(() => {
+		let timerId;
 
-		setFormValidState(() => (INITIAL_STATE));
-
-		if (!formData.title.trim().length) {
-			setFormValidState(state => ({...state, title: false}));
-			isFormValid = false;
+		if (!isValid.title || !isValid.text || !isValid.date) {
+			timerId = setTimeout(() => {
+				dispatchForm({ type: 'RESET_VALIDITY'});
+			}, 2000);
 		}
 
-		if (!formData.text.trim().length) {
-			setFormValidState(state => ({...state, text: false}));
-			isFormValid = false;
-		}
+		return () => {
+			clearTimeout(timerId);
+		}; 
+	}, [isValid]);
 
-		if (!formData.date) {
-			setFormValidState(state => ({...state, date: false}));
-			isFormValid = false;
+	useEffect(() => {
+		if (isReadyToSubmit) {
+			formSubmit(values);
+			dispatchForm({ type: 'CLEAR'});
 		}
+	}, [isReadyToSubmit]);
 
-		return isFormValid;
+	const onChange = (event) => {
+		dispatchForm({ 
+			type: 'SET_VALUE', 
+			payload: {[event.target.name]: event.target.value}});
 	};
 
 	const handleForm = (event) => {
 		event.preventDefault();
-		const formData = new FormData(event.target);
-		const formProps = Object.fromEntries(formData);
-		
-		if (validateForm(formProps)) {
-			formSubmit(formProps);
-		}
+		dispatchForm({ type: 'SUBMIT' });
 	};
 
 	return (
@@ -52,8 +47,10 @@ function Form({ formSubmit }) {
 				<input 
 					name="title" 
 					type="text"
+					value={values.title}
+					onChange={onChange}
 					className={cn(styles['input'], styles['input-title'], {
-						[styles['input_invalid']]: !formValidState.title
+						[styles['input_invalid']]: !isValid.title
 					})} />
 			</div>
 			<div className={styles['form-row']}>
@@ -65,8 +62,10 @@ function Form({ formSubmit }) {
 					name="date" 
 					type="date" 
 					id="date"
+					value={values.date}
+					onChange={onChange}
 					className={cn(styles['input'], {
-						[styles['input_invalid']]: !formValidState.date
+						[styles['input_invalid']]: !isValid.date
 					})}/>
 			</div>
 			<div className={styles['form-row']}>
@@ -78,12 +77,16 @@ function Form({ formSubmit }) {
 					name="tags" 
 					type="text" 
 					id="tags"
+					value={values.tags}
+					onChange={onChange}
 					className={cn(styles['input'])}/>
 			</div>
 			<textarea 
 				name="text"
+				value={values.text}
+				onChange={onChange}
 				className={cn(styles['input'], styles['input-text'], styles['input-textarea'], {
-					[styles['input_invalid']]: !formValidState.text
+					[styles['input_invalid']]: !isValid.text
 				})} ></textarea>
 
 			<Button text="Сохранить"></Button> 
