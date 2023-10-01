@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import { formReducer, INITIAL_STATE } from './Form.state';
 import cn from 'classnames';
 import Button from '../Button/Button';
@@ -9,10 +9,29 @@ function Form({ formSubmit }) {
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
 	const {isValid, values, isReadyToSubmit} = formState;
 
+	const titleRef = useRef();
+	const dateRef = useRef();
+	const textRef = useRef();
+
+	const focusError = (isValid) => {
+		switch(true) {
+		case !isValid.title:
+			titleRef.current.focus();
+			break;
+		case !isValid.date:
+			dateRef.current.focus();
+			break;
+		case !isValid.text:
+			textRef.current.focus();
+			break;
+		}
+	};
+
 	useEffect(() => {
 		let timerId;
 
 		if (!isValid.title || !isValid.text || !isValid.date) {
+			focusError(isValid);
 			timerId = setTimeout(() => {
 				dispatchForm({ type: 'RESET_VALIDITY'});
 			}, 2000);
@@ -28,7 +47,7 @@ function Form({ formSubmit }) {
 			formSubmit(values);
 			dispatchForm({ type: 'CLEAR'});
 		}
-	}, [isReadyToSubmit]);
+	}, [isReadyToSubmit, values, formSubmit]);
 
 	const onChange = (event) => {
 		dispatchForm({ 
@@ -47,6 +66,7 @@ function Form({ formSubmit }) {
 				<input 
 					name="title" 
 					type="text"
+					ref={titleRef}
 					value={values.title}
 					onChange={onChange}
 					className={cn(styles['input'], styles['input-title'], {
@@ -62,6 +82,7 @@ function Form({ formSubmit }) {
 					name="date" 
 					type="date" 
 					id="date"
+					ref={dateRef}
 					value={values.date}
 					onChange={onChange}
 					className={cn(styles['input'], {
@@ -83,6 +104,7 @@ function Form({ formSubmit }) {
 			</div>
 			<textarea 
 				name="text"
+				ref={textRef}
 				value={values.text}
 				onChange={onChange}
 				className={cn(styles['input'], styles['input-text'], styles['input-textarea'], {

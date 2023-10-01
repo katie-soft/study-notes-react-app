@@ -23,7 +23,7 @@ export function formReducer(state, action) {
 		return {...state, isValid: INITIAL_STATE.isValid};
 
 	case 'CLEAR': 
-		return {...state, values: INITIAL_STATE.values};
+		return {...state, values: INITIAL_STATE.values, isReadyToSubmit: false};
 
 	case 'SUBMIT': {
 		const titleValidity = state.values.title.trim().length;
