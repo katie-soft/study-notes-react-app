@@ -2,6 +2,7 @@ import { useEffect, useReducer, useRef } from 'react';
 import { formReducer, INITIAL_STATE } from './Form.state';
 import cn from 'classnames';
 import Button from '../Button/Button';
+import Input from '../Input/Input';
 import styles from './Form.module.css';
 
 function Form({ formSubmit }) {
@@ -63,51 +64,48 @@ function Form({ formSubmit }) {
 	return (
 		<form className={styles.form} onSubmit={handleForm}> 
 			<div className={styles['form-row']}>
-				<input 
+				<Input 
 					name="title" 
 					type="text"
+					isTitle
+					isValid={isValid.title}
 					ref={titleRef}
 					value={values.title}
 					onChange={onChange}
-					className={cn(styles['input'], styles['input-title'], {
-						[styles['input_invalid']]: !isValid.title
-					})} />
+				/>
 			</div>
 			<div className={styles['form-row']}>
 				<label className={styles['label-wrapper']} htmlFor="date">
 					<img src="/calendar.svg" alt="Calendar" />
 					<span className={styles.label}>Date</span>
 				</label>
-				<input 
+				<Input 
 					name="date" 
 					type="date" 
 					id="date"
+					isValid={isValid.date}
 					ref={dateRef}
 					value={values.date}
-					onChange={onChange}
-					className={cn(styles['input'], {
-						[styles['input_invalid']]: !isValid.date
-					})}/>
+					onChange={onChange}/>
 			</div>
 			<div className={styles['form-row']}>
 				<label className={styles['label-wrapper']} htmlFor="tags">
 					<img src="/folder.svg" alt="Folder" />
 					<span className={styles.label}>Tags</span>
 				</label>
-				<input 
+				<Input 
 					name="tags" 
 					type="text" 
 					id="tags"
 					value={values.tags}
-					onChange={onChange}
-					className={cn(styles['input'])}/>
+					onChange={onChange}/>
 			</div>
 			<textarea 
 				name="text"
 				ref={textRef}
 				value={values.text}
 				onChange={onChange}
-				className={cn(styles['input'], styles['input-text'], styles['input-textarea'], {
+				className={cn(styles['input-textarea'], {
 					[styles['input_invalid']]: !isValid.text
 				})} ></textarea>
 

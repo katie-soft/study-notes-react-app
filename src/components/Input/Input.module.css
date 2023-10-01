@@ -1,0 +1,26 @@
+.input {
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #FFFFFF10;
+  border-radius: 3px;
+}
+
+.input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+.input:focus {
+  outline: none;
+  background-color: #FFFFFF08;
+  border-color: transparent;
+}
+
+.input-title {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.input_invalid {
+  border: 1px #521521 solid;
+}
