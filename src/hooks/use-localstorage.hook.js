@@ -5,7 +5,6 @@ export function useLocalStorage(key) {
 	const [data, setData] = useState();
 
 	useEffect(() => {
-		console.log(localStorage.getItem(key));
 		if (localStorage.getItem(key) === 'undefined' || localStorage.getItem(key) === null) {
 			saveData(INITIAL_DATA);
 		} else {

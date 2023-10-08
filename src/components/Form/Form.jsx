@@ -74,6 +74,7 @@ function Form({ formSubmit }) {
 				<Input 
 					name="title" 
 					type="text"
+					placeholder="Title"
 					isTitle
 					isValid={isValid.title}
 					ref={titleRef}
@@ -116,7 +117,7 @@ function Form({ formSubmit }) {
 					[styles['input_invalid']]: !isValid.text
 				})} ></textarea>
 
-			<Button text="Сохранить"></Button> 
+			<Button>Сохранить</Button> 
 		</form>
 	);
 }

@@ -14,6 +14,7 @@ function TopicSelect() {
 		<select name="topic" id="topic" className={styles.select} value={topicId} onChange={changeTopic}>
 			<option value="1" className={styles.option}>React</option>
 			<option value="2" className={styles.option}>Angular</option>
+			<option value="3" className={styles.option}>Node.js</option>
 		</select>
 	);
 }
