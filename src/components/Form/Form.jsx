@@ -1,9 +1,10 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useContext, useEffect, useReducer, useRef } from 'react';
 import { formReducer, INITIAL_STATE } from './Form.state';
 import cn from 'classnames';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import styles from './Form.module.css';
+import { TopicContext } from '../../context/topic.context';
 
 function Form({ formSubmit }) {
 
@@ -13,6 +14,8 @@ function Form({ formSubmit }) {
 	const titleRef = useRef();
 	const dateRef = useRef();
 	const textRef = useRef();
+
+	const { topicId } = useContext(TopicContext);
 
 	const focusError = (isValid) => {
 		switch(true) {
@@ -49,6 +52,10 @@ function Form({ formSubmit }) {
 			dispatchForm({ type: 'CLEAR'});
 		}
 	}, [isReadyToSubmit, values, formSubmit]);
+
+	useEffect(() => {
+		dispatchForm({ type: 'SET_VALUE', payload: { topicId}});
+	}, [topicId]);
 
 	const onChange = (event) => {
 		dispatchForm({ 
