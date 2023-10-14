@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../context/theme.context';
 import './CardButton.css';
 
-function CardButton({children, className}) {
+function CardButton({ children, className, ...props }) {
 
 	const { theme } = useContext(ThemeContext);
 
@@ -11,7 +11,8 @@ function CardButton({children, className}) {
 	return (
 		<> 
 			<button 
-				className={classNames}>
+				className={classNames}
+				{...props}>
 				{children}
 			</button> 
 		</>

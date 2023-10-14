@@ -5,7 +5,7 @@ import styles from './JournalList.module.css';
 import { useContext } from 'react';
 import { TopicContext } from '../../context/topic.context';
 
-function JournalList( {listItems} ) {
+function JournalList( { listItems, setItem } ) {
 
 	const { topicId } = useContext(TopicContext);
 
@@ -20,7 +20,7 @@ function JournalList( {listItems} ) {
 					.sort(sortArrayByDate)
 					.map((item) => (
 						<li key={item.id}>
-							<CardButton>
+							<CardButton onClick={() => setItem(item)}>
 								<JournalItem 
 									title={item.title}
 									date={item.date}

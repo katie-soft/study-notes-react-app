@@ -7,7 +7,7 @@ import styles from './Form.module.css';
 import { TopicContext } from '../../context/topic.context';
 import { ThemeContext } from '../../context/theme.context';
 
-function Form({ formSubmit }) {
+function Form({ formSubmit, data }) {
 
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
 	const {isValid, values, isReadyToSubmit} = formState;
@@ -34,6 +34,10 @@ function Form({ formSubmit }) {
 	};
 
 	useEffect(() => {
+		dispatchForm({ type: 'SET_VALUE', payload: { ...data }});
+	}, [data]);
+
+	useEffect(() => {
 		let timerId;
 
 		if (!isValid.title || !isValid.text || !isValid.date) {
@@ -52,11 +56,12 @@ function Form({ formSubmit }) {
 		if (isReadyToSubmit) {
 			formSubmit(values);
 			dispatchForm({ type: 'CLEAR'});
+			dispatchForm({ type: 'SET_VALUE', payload: { topicId }});
 		}
 	}, [isReadyToSubmit, values, formSubmit]);
 
 	useEffect(() => {
-		dispatchForm({ type: 'SET_VALUE', payload: { topicId}});
+		dispatchForm({ type: 'SET_VALUE', payload: { topicId }});
 	}, [topicId]);
 
 	const onChange = (event) => {
@@ -98,7 +103,7 @@ function Form({ formSubmit }) {
 					id="date"
 					isValid={isValid.date}
 					ref={dateRef}
-					value={values.date}
+					value={values.date ? new Date(values.date).toISOString().slice(0, 10) : ''}
 					onChange={onChange}/>
 			</div>
 			<div className={styles['form-row']}>
