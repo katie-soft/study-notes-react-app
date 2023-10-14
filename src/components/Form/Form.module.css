@@ -9,23 +9,39 @@
 
 .input-textarea {
   width: 100%;
+  padding: 10px;
   background: none;
-  border: none;
-  border-bottom: 1px solid #FFFFFF10;
   border-radius: 3px;
   min-height: 300px;
-  border: 1px solid #FFFFFF10;
+  border: 1px solid;
   resize: none;
+}
+
+.input-textarea_theme_dark {
+  color: var(--primary-light);
+  border-color: var(--transparent-light);
+}
+
+.input-textarea_theme_light {
+  color: var(--secondary-dark);
+  border-color: var(--secondary-light);
 }
 
 .input-textarea:focus {
   outline: none;
-  background-color: #FFFFFF08;
+}
+
+.input-textarea_theme_dark:focus {
+  background-color: var(--transparent-dark);
   border-color: transparent;
 }
 
+.input-textarea_theme_light:focus {
+  background-color: var(--background-light);
+}
+
 .input_invalid {
-  border: 1px #521521 solid;
+  border: 1px var(--error) solid;
 }
 
 .form-row {
@@ -41,7 +57,15 @@
 }
 
 .label {
-  color: rgba(255, 255, 255, 0.60);
+  opacity: 0.6;
   font-size: 14px;
   font-weight: 600;
+}
+
+.label_theme_dark {
+  color: var(--primary-light);
+}
+
+.label_theme_light {
+  color: var(--secondary-dark);
 }

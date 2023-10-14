@@ -1,0 +1,15 @@
+.new-item-button {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.new-item-button_theme_dark {
+  color: var(--primary-light);
+}
+
+.new-item-button_theme_light {
+  background-color: var(--accent-light);
+}

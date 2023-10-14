@@ -1,15 +1,26 @@
 .card-button {
   border: none;
   border-radius: 3px;
-  background-color: rgba(255, 255, 255, 0.03);
-  color: #FFFFFF;
+
   font-size: 16px;
   width: 100%;
   padding: 20px;
   cursor: pointer;
   transition: all 0.3s;
 }
+
+.card-button_theme_dark {
+  background-color: var(--transparent-dark);
+}
     
-.card-button:hover {
-  background-color: rgba(255, 255, 255, 0.10);
+.card-button_theme_dark:hover {
+  background-color: #FFFFFF1a;
+}
+
+.card-button_theme_light {
+  background-color: var(--secondary-light);
+}
+
+.card-button_theme_light:hover {
+  background-color: var(--secondary-medium);
 }

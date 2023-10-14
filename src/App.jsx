@@ -8,6 +8,8 @@ import NewItemButton from './components/NewItemButton/NewItemButton';
 import JournalList from './components/JournalList/JournalList';
 import Form from './components/Form/Form';
 import { mapItems } from './utils/mapItems';
+import { ThemeContextProvider } from './context/theme.context';
+import ThemeSelect from './components/ThemeSelect/ThemeSelect';
 
 function App() {	
 
@@ -22,18 +24,22 @@ function App() {
 	};
 
 	return (
-		<TopicContextProvider>
-			<div className={styles.app}>
-				<NavPanel>
-					<Header />
-					<NewItemButton />
-					<JournalList  listItems={mapItems(items)}/>
-				</NavPanel>
-				<Body>
-					<Form formSubmit={addItem} />
-				</Body>
-			</div>
-		</TopicContextProvider>
+		<ThemeContextProvider>
+			<TopicContextProvider>
+				<div className={styles.app}>
+					<NavPanel>
+						<Header />
+						<NewItemButton />
+						<JournalList  listItems={mapItems(items)}/>
+					</NavPanel>
+					<Body>
+						<ThemeSelect />
+						<Form formSubmit={addItem} />
+					</Body>
+				</div>
+			</TopicContextProvider>
+		</ThemeContextProvider>
+
 	);
 }
 

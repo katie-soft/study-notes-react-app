@@ -15,7 +15,8 @@
 
 .journal-item__text, 
 .journal-item__date {
-  color: rgba(255, 255, 255, 0.60);
+
+  opacity: 0.6;
 }
 
 .journal-item__text {
@@ -23,4 +24,15 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.journal-item__text_theme_dark,
+.journal-item__date_theme_dark {
+  color: var(--primary-light);
+}
+
+.journal-item__text_theme_light,
+.journal-item__date_theme_light,
+.journal-item__title_theme_light {
+  color: var(--primary-dark);
 }

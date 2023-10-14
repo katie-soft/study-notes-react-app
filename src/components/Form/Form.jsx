@@ -5,6 +5,7 @@ import Button from '../Button/Button';
 import Input from '../Input/Input';
 import styles from './Form.module.css';
 import { TopicContext } from '../../context/topic.context';
+import { ThemeContext } from '../../context/theme.context';
 
 function Form({ formSubmit }) {
 
@@ -16,6 +17,7 @@ function Form({ formSubmit }) {
 	const textRef = useRef();
 
 	const { topicId } = useContext(TopicContext);
+	const { theme } = useContext(ThemeContext);
 
 	const focusError = (isValid) => {
 		switch(true) {
@@ -85,7 +87,10 @@ function Form({ formSubmit }) {
 			<div className={styles['form-row']}>
 				<label className={styles['label-wrapper']} htmlFor="date">
 					<img src="/calendar.svg" alt="Calendar" />
-					<span className={styles.label}>Date</span>
+					<span className={cn(styles['label'], {
+						[styles['label_theme_dark']]: theme === 'dark',
+						[styles['label_theme_light']]: theme === 'light'
+					})}>Date</span>
 				</label>
 				<Input 
 					name="date" 
@@ -99,7 +104,10 @@ function Form({ formSubmit }) {
 			<div className={styles['form-row']}>
 				<label className={styles['label-wrapper']} htmlFor="tags">
 					<img src="/folder.svg" alt="Folder" />
-					<span className={styles.label}>Tags</span>
+					<span className={cn(styles['label'], {
+						[styles['label_theme_dark']]: theme === 'dark',
+						[styles['label_theme_light']]: theme === 'light'
+					})}>Tags</span>
 				</label>
 				<Input 
 					name="tags" 
@@ -114,7 +122,9 @@ function Form({ formSubmit }) {
 				value={values.text}
 				onChange={onChange}
 				className={cn(styles['input-textarea'], {
-					[styles['input_invalid']]: !isValid.text
+					[styles['input_invalid']]: !isValid.text,
+					[styles['input-textarea_theme_dark']]: theme === 'dark',
+					[styles['input-textarea_theme_light']]: theme === 'light'
 				})} ></textarea>
 
 			<Button>Сохранить</Button> 

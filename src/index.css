@@ -1,13 +1,28 @@
+:root {
+  --background-dark: #181818;
+  --background-light: #DEDEDE;
+  --primary-light: #FFFFFF;
+  --primary-dark: #000000;
+  --accent-light: #FFB2B2;
+  --accent-dark: #800080;
+  --secondary-light: #BDBDBD;
+  --secondary-medium: #7B7B7B;
+  --secondary-dark: #393939;
+  --transparent-light: #FFFFFF10;
+  --transparent-dark: #FFFFFF08;
+  --error: #521521;
+}
+
 body {
-  background-color: #181818;
   margin: 0;
+  background-color: var(--background-dark);
 }
 
 * {
   font-family: 'Source Code Pro', monospace;
   line-height: 1.5;
   font-weight: 400;
-  color: #FFFFFF;
+  box-sizing: border-box;
 }
 
 p, h1, h2, ul {

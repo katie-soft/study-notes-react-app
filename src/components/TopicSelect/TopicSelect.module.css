@@ -1,12 +1,22 @@
 .select {
-  color: black;
   width: 100%;
-  background-color: dimgray;
   padding: 10px;
   font-size: 16px;
   border-radius: 3px;
+  outline: none;
+  border: none;
+}
+
+.select_theme_dark {
+  color: var(--primary-light);
+  background-color: var(--secondary-dark);
+}
+
+.select_theme_light {
+  color: var(--primary-light);
+  background-color: var(--secondary-medium);
 }
 
 .option {
-  color: black;
+  color: var(--secondary-light);
 }

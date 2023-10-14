@@ -1,14 +1,26 @@
 .button {
   border-radius: 6px;
   border: none;
-  color: #FFFFFF;
   padding: 8px 30px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.25s;
-  background-color: #312EB5;
+  transition: background-color 0.3s;
 }
 
-.button:hover {
-  background-color: #5059fe;
+.button_theme_light {
+  color: var(--secondary-dark);
+  background-color: var(--accent-light);
+}
+
+.button_theme_light:hover {
+  background-color: #f79d9d;
+}
+
+.button_theme_dark {
+  color: var(--primary-light);
+  background-color: var(--accent-dark);
+}
+
+.button_theme_dark:hover {
+  background-color: #a002a0;
 }

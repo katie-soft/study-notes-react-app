@@ -2,9 +2,19 @@
   width: 100%;
   background: none;
   border: none;
-  border-bottom: 1px solid #FFFFFF10;
+  border-bottom: 1px solid;
   border-radius: 3px;
   position: relative;
+}
+
+.input_theme_dark {
+  color: var(--primary-light);
+  border-color: var(--transparent-light);
+}
+
+.input_theme_light {
+  color: var(--secondary-dark);
+  border-color: var(--secondary-light);
 }
 
 .input::-webkit-calendar-picker-indicator {
@@ -21,7 +31,7 @@
 
 .input:focus {
   outline: none;
-  background-color: #FFFFFF08;
+  background-color: var(--transparent-dark);
   border-color: transparent;
 }
 
@@ -31,5 +41,6 @@
 }
 
 .input_invalid {
-  border: 1px #521521 solid;
+  border: 1px solid;
+  border-color: var(--error);
 }
