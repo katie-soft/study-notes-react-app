@@ -7,7 +7,7 @@ import styles from './Form.module.css';
 import { TopicContext } from '../../context/topic.context';
 import { ThemeContext } from '../../context/theme.context';
 
-function Form({ formSubmit, data }) {
+function Form({ formSubmit, data, onDelete }) {
 
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
 	const {isValid, values, isReadyToSubmit} = formState;
@@ -34,6 +34,10 @@ function Form({ formSubmit, data }) {
 	};
 
 	useEffect(() => {
+		if (!data) {
+			dispatchForm({ type: 'CLEAR'});
+			dispatchForm({ type: 'SET_VALUE', payload: { topicId }});
+		}
 		dispatchForm({ type: 'SET_VALUE', payload: { ...data }});
 	}, [data]);
 
@@ -75,6 +79,12 @@ function Form({ formSubmit, data }) {
 		dispatchForm({ type: 'SUBMIT' });
 	};
 
+	const deleteJournalItem = () => {
+		onDelete(data.id);
+		dispatchForm({ type: 'CLEAR'});
+		dispatchForm({ type: 'SET_VALUE', payload: { topicId }});
+	};
+
 	return (
 		<form className={styles.form} onSubmit={handleForm}> 
 			<div className={styles['form-row']}>
@@ -88,6 +98,14 @@ function Form({ formSubmit, data }) {
 					value={values.title}
 					onChange={onChange}
 				/>
+				{data?.id && 
+				<button className={cn(styles['button-archive'], {
+					[styles['button-archive_theme_dark']]: theme === 'dark',
+					[styles['button-archive_theme_light']]: theme === 'light'
+				})} type="button" onClick={deleteJournalItem}>
+					<img src="/archive.svg" alt="Archive" />
+				</button>
+				}
 			</div>
 			<div className={styles['form-row']}>
 				<label className={styles['label-wrapper']} htmlFor="date">

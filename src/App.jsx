@@ -15,7 +15,7 @@ import { ThemeContextProvider } from './context/theme.context';
 function App() {	
 
 	const [items, setItems] = useLocalStorage('data');
-	const [selectedItem, setSelectedItem] = useState({});
+	const [selectedItem, setSelectedItem] = useState(null);
 
 	const addItem = newItem => {
 		if (!newItem.id) {
@@ -34,7 +34,10 @@ function App() {
 				return i;
 			})]);
 		}
+	};
 
+	const deleteItem = (id) => {
+		setItems([...items.filter(i => i.id !== id)]);
 	};
 
 	return (
@@ -43,12 +46,12 @@ function App() {
 				<div className={styles.app}>
 					<NavPanel>
 						<Header />
-						<NewItemButton />
+						<NewItemButton clearForm={() => setSelectedItem(null)} />
 						<JournalList listItems={mapItems(items)} setItem={setSelectedItem}/>
 					</NavPanel>
 					<Body>
 						<ThemeSelect />
-						<Form formSubmit={addItem} data={selectedItem} />
+						<Form formSubmit={addItem} onDelete={deleteItem} data={selectedItem} />
 					</Body>
 				</div>
 			</TopicContextProvider>
