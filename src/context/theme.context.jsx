@@ -1,12 +1,13 @@
 import { createContext, useState } from 'react';
 
+const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
 export const ThemeContext = createContext({
-	theme: 'dark'
-});
+	theme: systemTheme });
 
 export const ThemeContextProvider = ({ children }) => {
 
-	const [theme, setTheme] = useState('dark');
+	const [theme, setTheme] = useState(systemTheme);
 
 	return <ThemeContext.Provider value={{ theme, setTheme }}>
 		{children}
